@@ -1,0 +1,6 @@
+node_modules
+*.class
+build
+built
+.gradle
+dist/*
