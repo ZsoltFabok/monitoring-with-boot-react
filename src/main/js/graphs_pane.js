@@ -1,6 +1,36 @@
 import React from 'react';
 import {AreaChart, Area, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer} from 'recharts';
 
+const CustomTooltip = React.createClass({
+  render() {
+    const { active, payload, label } = this.props;
+
+    if (active) {
+      const style = {
+        padding: 6,
+        backgroundColor: '#fff',
+        border: '1px solid #ccc',
+      };
+
+      var entries = [];
+      for (var i = 0; i < payload.length; i++) {
+        const label_style = {
+          color: payload[i].fill
+        };
+        entries.push(<p style={label_style}>{payload[i].name}: {payload[i].value}</p>);
+      }
+
+      return (
+        <div className="area-chart-tooltip" style={style}>
+          {entries}
+        </div>
+      );
+    }
+
+    return null;
+  },
+});
+
 
 function Graph(props) {
   const data = props.data.data;
@@ -28,7 +58,7 @@ function Graph(props) {
         <AreaChart
           data={data}
           margin={{top: 20, bottom: 20, left: 0, right: 0}} >
-          <Tooltip/>
+          <Tooltip content={<CustomTooltip />} />
           <YAxis />
           <Legend />
           <CartesianGrid strokeDasharray="3 3" />

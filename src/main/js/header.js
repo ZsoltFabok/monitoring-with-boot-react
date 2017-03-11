@@ -4,7 +4,7 @@ function Header(props) {
   return (
   <div className="header">
     <div className="title">
-      TV Tool
+      Monitoring
     </div>
     <div className="information">
       <b>generated at:</b> {props.fetchInfo.generated_at}
